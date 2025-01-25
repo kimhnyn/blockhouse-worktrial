@@ -14,9 +14,6 @@ export default function UserLoginForm() {
     const [usernameValid, setUsernameValid] = useState(false);
     const [passwordValid, setPasswordValid] = useState(false);
 
-    // const [formValid, setFormValid] = useState(false);
-    // const [signUpStatus, setSignUpStatus] = useState(false);
-
     const validateUsername = () => {
         if (username.length >= 8 && username) {
             setUsernameValid(true);
@@ -32,14 +29,6 @@ export default function UserLoginForm() {
             setPasswordValid(false);
         }
     }
-
-    // const validatePasswordMatch = () => {
-    //     if (passwordValid && (password === confirmPassword)) {
-    //         setConfirmPasswordValid(true);
-    //     } else {
-    //         setConfirmPasswordValid(false);
-    //     }
-    // }
 
     const handleLogin = () => {
         if (password && username && passwordValid && passwordValid && usernameValid) {
@@ -78,21 +67,7 @@ export default function UserLoginForm() {
                 onBlur={() => validatePassword()}
             />
             {/* error text */}
-            {!passwordValid && password && <Text style={styles.errorText}>Passwords need to have 8 or more characters, at least one lowercase, at least one uppercase, and at least one special character.</Text>}
-
-{/* 
-            <Text style={styles.defaultText}>Confirm Password</Text>
-            <TextInput
-                placeholder="Enter password again"
-                placeholderTextColor= '#737373'
-                secureTextEntry
-                onChangeText={setConfirmPassword}
-                value={confirmPassword}
-                style={[styles.input, !confirmPasswordValid && confirmPassword && styles.errorInput]}
-                onBlur={() => validatePasswordMatch()}
-            />
-            {/* error text */}
-        
+            {!passwordValid && password && <Text style={styles.errorText}>Passwords need to have 8 or more characters, at least one lowercase, at least one uppercase, and at least one special character.</Text>}        
 
             <TouchableOpacity style={styles.button} onPress={handleLogin}>
                 <Text style={styles.defaultText}>Log In</Text>
