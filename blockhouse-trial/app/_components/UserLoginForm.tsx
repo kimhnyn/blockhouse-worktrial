@@ -5,16 +5,16 @@ import { Link } from "expo-router";
 
 
 
-export default function UserSignUpForm() {
+export default function UserLoginForm() {
     
     // handling form logic
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+
     const [usernameValid, setUsernameValid] = useState(false);
     const [passwordValid, setPasswordValid] = useState(false);
-    const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
-    const [formValid, setFormValid] = useState(false);
+
+    // const [formValid, setFormValid] = useState(false);
     // const [signUpStatus, setSignUpStatus] = useState(false);
 
     const validateUsername = () => {
@@ -33,16 +33,16 @@ export default function UserSignUpForm() {
         }
     }
 
-    const validatePasswordMatch = () => {
-        if (passwordValid && (password === confirmPassword)) {
-            setConfirmPasswordValid(true);
-        } else {
-            setConfirmPasswordValid(false);
-        }
-    }
+    // const validatePasswordMatch = () => {
+    //     if (passwordValid && (password === confirmPassword)) {
+    //         setConfirmPasswordValid(true);
+    //     } else {
+    //         setConfirmPasswordValid(false);
+    //     }
+    // }
 
-    const handleSignUp = () => {
-        if (password && username && confirmPassword && passwordValid && passwordValid && usernameValid && confirmPasswordValid) {
+    const handleLogin = () => {
+        if (password && username && passwordValid && passwordValid && usernameValid) {
             Alert.alert('Successfully signed up!');
         } else {
             Alert.alert('Username or password invalid.')
@@ -54,7 +54,7 @@ export default function UserSignUpForm() {
     // if password is not 
     return (
         <View style={styles.container}>
-            <Text style={styles.defaultText}>Sign Up</Text>
+            <Text style={styles.defaultText}>Log In</Text>
             <Text style={styles.inputHeader}>Username</Text>
             <TextInput
                 placeholder="e.g. JohnnySmith0"
@@ -80,8 +80,8 @@ export default function UserSignUpForm() {
             {/* error text */}
             {!passwordValid && password && <Text style={styles.errorText}>Passwords need to have 8 or more characters, at least one lowercase, at least one uppercase, and at least one special character.</Text>}
 
-
-            <Text style={styles.inputHeader}>Confirm Password</Text>
+{/* 
+            <Text style={styles.defaultText}>Confirm Password</Text>
             <TextInput
                 placeholder="Enter password again"
                 placeholderTextColor= '#737373'
@@ -92,13 +92,12 @@ export default function UserSignUpForm() {
                 onBlur={() => validatePasswordMatch()}
             />
             {/* error text */}
-            {!confirmPasswordValid && confirmPassword && <Text style={styles.errorText}>Passwords do not match.</Text>}
+        
 
-            <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-                <Text style={styles.defaultText}>Sign Up</Text>
+            <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                <Text style={styles.defaultText}>Log In</Text>
             </TouchableOpacity>
-            <Text style={styles.defaultText}>Already signed up?</Text>
-            <Link href="/login/page" style={styles.button}>Log In</Link>
+            <Text style={styles.defaultText}></Text> 
         </View>
     )
 };
